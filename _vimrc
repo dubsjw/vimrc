@@ -28,7 +28,6 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-color turtles
 set directory=C:/vimswap
 set backupdir=C:/vimswap
 set lines=60 columns=200
