@@ -3,32 +3,17 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+set rtp+=$VIM/vim74/bundle/Vundle.vim
+call vundle#begin('$VIM/vim74/bundle/')
 
-color turtles
+Plugin 'Vundle.vim'
+Plugin 'beigebrucewayne/Turtles'
+Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
+
+colorscheme turtles
 set autoindent                       " turn on auto indent
 set backspace=indent,eol,start       " Makes backspace work as expected
 set backupdir=C:/vimswap
@@ -45,7 +30,7 @@ set foldlevelstart=100               " Open all folds by default
 set foldmethod=syntax                " Enable folds defined by syntax (i.e. functions)
 set formatoptions+=r                 " Enable continuation of comments after a newline
 set hid                              " Change buffer without saving
-set history=20                       " Save 20 lines of command history
+set history=40                       " Save 20 lines of command history
 set hlsearch                         " Turn on search highlighting
 set ignorecase                       " Ignore case in searches
 set ignorecase                      " Case insensitive searching
@@ -87,6 +72,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+map <C-n> :NERDTreeToggle<CR>
+
 " Set font stuff.
 if has("gui_running")
   if has("gui_gtk2")
@@ -97,4 +84,5 @@ if has("gui_running")
     set guifont=Consolas:h11:cANSI
   endif
 endif
+
 
