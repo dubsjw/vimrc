@@ -57,7 +57,6 @@ set so=5                             " scrolling activates at 7 lines from the t
 set softtabstop=4                    " Backspace over expanded tabs
 set tabstop=4                        " Tabs equivalent to 4 spaces
 set tags=tags;/                      " Search from current directory to root for ctags db
-set textwidth=79
 set title
 set undodir=$HOME/.vimundo           " Set directory for storing undo files
 set undofile                         " Turn on persistent undo
